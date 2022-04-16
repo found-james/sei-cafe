@@ -16,7 +16,14 @@ class SignupForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        alert(JSON.stringify(this.state));
+        try {
+            const formData = {...this.state};
+            delete formData.error;
+            delete formData.confirm;
+
+        } catch {
+            this.setState({error: "SIGN UP FAILED"});
+        }
     }
     render (){
         const disable = this.state.password !== this.state.confirm;
